@@ -7,7 +7,6 @@ Store the survivors informations on an external `gen.json` file.
 Run the next simulation by loading `gen.json` bacteria and duplicate their number, as if they are reproducing.
 The project is aimed to show that Natural Selection forces the evolution of the bacteria and, after a certain number of iterations, they will all learn how to survive.
 
----
 ## Project
 The project consists of multiple files:
 - ***bacteria.py***: contains the Bacteria class and the basic functions to compute Neural Network decisions and visualize the Network as a graph.
@@ -19,7 +18,6 @@ The project consists of multiple files:
 - ***main.py***: the main file that runs a certain number of simulations and stores the survivors informations on `log/gen.json`.
 - ***visual.py***: runs a simulation based on the `log/gen.json` file and shows it on screen.
 
----
 ## Settings
 - ***SIZE***: the size of the world square matrix
 - ***POPULATION***: the starting bacteria population.
@@ -30,7 +28,6 @@ The project consists of multiple files:
 - ***MAX_GEN***: how many iterations does the `main.py` execute before arresting.
 - ***MUTATION***: the mutation probability, each time a bacteria reproduces this is the chance that a mutation will occur.
 
----
 ## Brain
 Each bacteria consist of a small neural network brain with three layers:
 
@@ -77,7 +74,6 @@ Actions = [
         Eat]
 ```
 
----
 ## Bacteria
 Each bacteria consists of a simple neural network with the three layers described above.
 The connections between the nodes are described as an hexadecimal string:
@@ -106,20 +102,16 @@ Given all connections we can build three matrices:
 - SA: the matrix describing connections Sensor -> Action.
 These matrices are used to compute what the bacteria will do given it's sensor outputs.
 
----
 ## World
 The world consists of a square matrix on which some entries are occupied by a bacteria.
 This file consists of functions that spawns bacteria, let them perform actions and then run the Natural Selection function to select the survivors.
 There are two functions, Save and Load, that manage the data stored on `log/gen.json`.
 
----
 ## Main
 The main file simply runs a complete simulation and stops after a certain number of iteration, as specified in the `MAX_GEN` variable. If you don't want to reset the evolution and keep evolving from `log/gen.json` you can comment some lines as specified in the file.
 
----
 ## Visual
 Simply shows on screen the current `log/gen.json` population, it doesn't modify the file in any way, is only a visualization tool.
 
----
 ## To do
 Separate the graph visualization from the bacteria file and organize the code in folders.
