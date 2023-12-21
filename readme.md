@@ -1,12 +1,20 @@
 # Bacteria AI
 It's a simulation of a bacteria colony using Neural Network.
 
-## World
-The world consists of a square matrix in which are randomly spawned some bacteria.
+## Project
+The project consists of multiple files:
+- ***bacteria.py***: contains the Bacteria class and the basic functions to compute Neural Network decisions and visualize the Network as a graph.
+- ***brain.py***: contains the Sensors and the Actions that all bacteria are able to use.
+- ***graphics.py*** and ***debug.py***: manage all the visualization processes.
+- ***requirements.txt***: the python requirements that must be installed on the enviroment.
+- ***world.py***: contains the world class and all the
+- ***main.py***:
 
 ## Brain
 Each bacteria consist of a small neural network brain with three layers:
-- The first is the Sensor layer and consists of a list of functions that outputs some information about the bacteria or the world. 
+
+### Sensor
+The first is the Sensor layer and consists of a list of functions that outputs some information about the bacteria or the world. 
 ```python
 Sensors = [
         DetectNorthBlock,
@@ -23,7 +31,8 @@ Sensors = [
 ```
 Every sensor returns a float between 0 and 1.
 
-- The second is the Neuron layer and consists of some empty nodes that simply normalize their imput between 0 and 1 using a logistic function
+### Neuron
+The second is the Neuron layer and consists of some empty nodes that simply normalize their imput between 0 and 1 using a logistic function
 ```python
 def sigma(vector, p = 4):
     """ Sigmoid normalization function """
@@ -34,7 +43,8 @@ def sigma(vector, p = 4):
     return output
 ```
 
-- The third is the Action layer and consists of a list of functions that are activated only if the input given is above a threshold i.e. above 0.5.
+### Action
+The third is the Action layer and consists of a list of functions that are activated only if the input given is above a threshold i.e. above 0.5.
 ```python
 Actions = [
         MoveNorth, 
