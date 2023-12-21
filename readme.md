@@ -64,6 +64,7 @@ def sigma(vector, p = 4):
 
 ### Action
 The third is the Action layer and consists of a list of functions that are activated only if the input given is above a threshold i.e. above 0.5.
+Such functions are actions made by the bacteria such as moving or eating.
 ```python
 Actions = [
         MoveNorth, 
@@ -73,7 +74,6 @@ Actions = [
         MoveRandom, 
         Eat]
 ```
-Such functions are actions made by the bacteria such as moving or eating.
 ---
 ## Bacteria
 Each bacteria consists of a simple neural network with the three layers described above.
@@ -83,16 +83,16 @@ The connections between the nodes are described as an hexadecimal string:
 ```
 The string consists of chunks of four characters that encodes the informations of a single connection:
 each gene is converted to a 16 bits binary string that encodes a single connection between neurons, sensors and actions.
-    - 0th bit:
-        - 0 -> Starting from a Neuron 
-        - 1 -> Starting from a Sensor
-    - 1t bit:
-        - 0 -> Starting from a Neuron 
-        - 1 -> Starting from a Sensor
-    - bit 2 to 5:
-        - Chooses which starting Neuron or Sensor
-    - bit 6 to 9:
-        - Chooses which ending Neuron or Action
-    - bit 10 to 16:
-        - Determines the weight of the connection, a normalized number between 0 and 1
+- 0th bit:
+    - 0 -> Starting from a Neuron 
+    - 1 -> Starting from a Sensor
+- 1t bit:
+    - 0 -> Starting from a Neuron 
+    - 1 -> Starting from a Sensor
+- bit 2 to 5:
+    - Chooses which starting Neuron or Sensor
+- bit 6 to 9:
+    - Chooses which ending Neuron or Action
+- bit 10 to 16:
+    - Determines the weight of the connection, a normalized number between 0 and 1
 
