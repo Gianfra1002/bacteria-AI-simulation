@@ -16,14 +16,15 @@ world.Load(
         gene_num = GENE_NUM, 
         neuron_num = NEURON_NUM, 
         sensor_num = len(Sensors), 
-        action_num = len(Actions)
+        action_num = len(Actions),
+        food_coordinates=FOOD_COORDINATES
         )
 
 pygame.init()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-board = Board(world.map)
+board = Board(matrix = world.map, food_matrix = world.food_map)
 
 i = 1
 while True:
@@ -44,6 +45,3 @@ while True:
     
     pygame.display.update()
     pygame.time.Clock().tick(20)
-
-
- 

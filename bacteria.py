@@ -68,7 +68,7 @@ def Convert_genetic_to_matrix(genetic, neuron_num, sensor_num, action_num):
         matrix[row][col] = int(binary[10:],2)/63
     return matrix
 
-def Convert_matrix_to_graph(matrix,neuron_num, sensor_num, action_num):
+def Convert_matrix_to_graph(matrix, neuron_num, sensor_num, action_num):
     """ Turns the matrix into a properly formatted adjacency matrix and returns the associated graph"""
     array = np.array(matrix)
     # array = np.array([[1 for _ in range(neuron_num + action_num)] for _ in range(neuron_num + sensor_num)])
@@ -78,21 +78,21 @@ def Convert_matrix_to_graph(matrix,neuron_num, sensor_num, action_num):
     G = ig.Graph.Weighted_Adjacency(array)
     return G
 
-def SaveGraph(bacteria, file = ""):
+def SaveGraph(bacteria, neuron_num, sensor_num, action_num, file = ""):
     """ Shows the graph on a specified file or simply onscreen """
-    G = Convert_matrix_to_graph(bacteria.matrix, bacteria.neuron_num, bacteria.sensor_num, bacteria.action_num)
+    G = Convert_matrix_to_graph(bacteria.matrix, neuron_num, sensor_num, action_num)
 
     vertex_color = []
     vertex_label = []
     for i in range(G.vcount()):
-        if i < bacteria.neuron_num:
+        if i < neuron_num:
             vertex_label.append(f"N{i}")
             vertex_color.append("lightblue")
-        elif i < bacteria.neuron_num + bacteria.sensor_num: 
-            vertex_label.append(f"S{i - bacteria.neuron_num}")
+        elif i < neuron_num + sensor_num: 
+            vertex_label.append(f"S{i - neuron_num}")
             vertex_color.append("green")
         else: 
-            vertex_label.append(f"A{i - bacteria.neuron_num - bacteria.sensor_num}")
+            vertex_label.append(f"A{i - neuron_num - sensor_num}")
             vertex_color.append("red")
 
     fig, ax = plt.subplots()
@@ -161,25 +161,32 @@ def Reproduce(gene_num, neuron_num, sensor_num, action_num, pos, genetic, mutati
 
 class Bacteria():
     def __init__(self, gene_num, neuron_num, sensor_num, action_num, pos = [0,0], genetic = ""):
-        
+        """ The bacteria class, it stores mainly the genetic and the position, also other useful info i.e. the matrices """
+        # The genetic patrimony (DNA)
         if genetic == "":
             self.genetic = Generate_Genetic(gene_num)
         else:
             self.genetic = genetic
 
+        # Position
         self.pos = pos
-        self.matrix =  np.array(Convert_genetic_to_matrix(self.genetic, neuron_num, sensor_num, action_num))
 
+        # Color
         self.color = Color(self.genetic)
 
+        # The linear matrices for computing actions
+        self.matrix =  np.array(Convert_genetic_to_matrix(self.genetic, neuron_num, sensor_num, action_num))
         self.NN = self.matrix[:neuron_num, :neuron_num]
         self.NA = self.matrix[:neuron_num, neuron_num:]
         self.SN = self.matrix[neuron_num:, :neuron_num]
         self.SA = self.matrix[neuron_num:, neuron_num:]
+
+        # Boolean variable is True if the bacteria has eaten food
+        self.food = False
         
-        self.neuron_num = neuron_num
-        self.sensor_num = sensor_num
-        self.action_num = action_num
+        # self.neuron_num = neuron_num
+        # self.sensor_num = sensor_num
+        # self.action_num = action_num
 
 
 # GENE_NUM = 15
@@ -197,7 +204,7 @@ class Bacteria():
 
 # data = load_data_file("log/gen.json")
 # bact = Bacteria(GENE_NUM, NEURON_NUM, len(Sensors), len(Actions), genetic = data["bact0"])
-# SaveGraph(bact)
+# SaveGraph(bact, NEURON_NUM, len(Sensors), len(Actions))
 
 
 

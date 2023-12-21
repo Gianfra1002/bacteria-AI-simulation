@@ -4,18 +4,29 @@ HEIGHT = 600
 
 # ------- WORLD ------------
 SIZE = 100
-POPULATION = 200
-GENE_NUM = 20
-NEURON_NUM = 4
+POPULATION = 500
+GENE_NUM = 40
+NEURON_NUM = 20
 LIFE_SPAN = 150
-MAX_GEN = 10
+MAX_GEN = 20
 MAX_POPULATION = 300
-MUTATION = 0.01
+MUTATION = 0.1
 
+# Food settings
+# FOOD = 1000
+FOOD_COORDINATES = [[i,j] for i in range(40,60) for j in range(40,60)]
+# FOOD_COORDINATES = [[i,j] for i in range(SIZE - 10,SIZE) for j in range(0,SIZE)]
+
+# Natural selection condition
 def Condition(bacteria):
-    # radius = 15
-    # boolean = (bacteria.pos[1] - 50 <= 15) and (bacteria.pos[1] - 50 >= -15) and (bacteria.pos[0] - 50 >= -15) and (bacteria.pos[0] - 50 <= 15)
-    boolean = (bacteria.pos[0] >= SIZE - 5)
+    # Center condition
+    boolean = (bacteria.pos[1] <= 60) and (bacteria.pos[1] >= 40) and (bacteria.pos[0] >= 40) and (bacteria.pos[0] <= 60)
+    
+    # Border condition
+    # boolean = (bacteria.pos[0] >= SIZE - 5)
+
+    # Food condition
+    # boolean = bacteria.food
     return boolean
 
 # ------------ UTILS -----------
