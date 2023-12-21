@@ -94,12 +94,14 @@ each gene is converted to a 16 bits binary string that encodes a single connecti
     - Chooses which ending Neuron or Action
 - bit 10 to 16:
     - Determines the weight of the connection, a normalized number between 0 and 1
+
 This encoding method allows us to have a maximum of 16 Sensors, Neurons and Actions.
 Given all connections we can build three matrices:
 - NN: the matrix describing connections Neuron -> Neuron.
 - NA: the matrix describing connections Neuron -> Action.
 - SN: the matrix describing connections Sensor -> Neuron.
 - SA: the matrix describing connections Sensor -> Action.
+
 These matrices are used to compute what the bacteria will do given it's sensor outputs.
 
 ## World
