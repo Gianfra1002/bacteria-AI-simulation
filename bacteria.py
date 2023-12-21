@@ -189,22 +189,10 @@ class Bacteria():
         # self.action_num = action_num
 
 
-# GENE_NUM = 15
-# NEURON_NUM = 3
-# SENSON_NUM = 3 # length of future sensor vector
-# ACTION_NUM = 3 # length of future action vector
-
-# bact1 = Bacteria(GENE_NUM, NEURON_NUM, SENSON_NUM, ACTION_NUM, [0,0])
-
-# print(type(bact1))
-
-# print(Color(bact1.genetic))
-
-# SaveGraph(bact1)
-
-# data = load_data_file("log/gen.json")
-# bact = Bacteria(GENE_NUM, NEURON_NUM, len(Sensors), len(Actions), genetic = data["bact0"])
-# SaveGraph(bact, NEURON_NUM, len(Sensors), len(Actions))
+### UNCOMMENT THESE LINES IF YOU WANT TO SEE THE GRAPH OF A BACTERIA
+data = load_data_file("log/gen.json")
+bact = Bacteria(GENE_NUM, NEURON_NUM, len(Sensors), len(Actions), genetic = data["bact0"])
+SaveGraph(bact, NEURON_NUM, len(Sensors), len(Actions))
 
 
 

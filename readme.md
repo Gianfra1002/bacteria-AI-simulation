@@ -79,14 +79,14 @@ Actions = [
 Each bacteria consists of a simple neural network with the three layers described above.
 The connections between the nodes are described as an hexadecimal string:
 ```python
-"bact0": "fff5 d80a a440 6e1e cf19 f374 80bd 30fe c07c c2f9 53cf 7b93 38d0 1586 1a94 ce06 71e8 26f5 ff7f dcee 36fa 9424 1c40 8714 3c64 ef0f 1515 9dce 73fa 6155 086e 5462 ab78 4207 ce8b db37 032b c0d8 d010 c1a1"
+"bact0": "fff5 d80a a440 6e1e cf19 f374 80bd 30fe c07c c2f9 53cf 7b93 38d0 1586 1a94 ce06 71e8 26f5 ff7f dcee"
 ```
 The string consists of chunks of four characters that encodes the informations of a single connection:
 each gene is converted to a 16 bits binary string that encodes a single connection between neurons, sensors and actions.
-- 0th bit:
+- bit 0:
     - 0 -> Starting from a Neuron 
     - 1 -> Starting from a Sensor
-- 1t bit:
+- bit 1:
     - 0 -> Starting from a Neuron 
     - 1 -> Starting from a Sensor
 - bit 2 to 5:
@@ -96,3 +96,26 @@ each gene is converted to a 16 bits binary string that encodes a single connecti
 - bit 10 to 16:
     - Determines the weight of the connection, a normalized number between 0 and 1
 
+This encoding method allows us to have a maximum of 16 Sensors, Neurons and Actions.
+Given all connections we can build three matrices:
+- NN: the matrix describing connections Neuron -> Neuron.
+- NA: the matrix describing connections Neuron -> Action.
+- SN: the matrix describing connections Sensor -> Neuron.
+- SA: the matrix describing connections Sensor -> Action.
+
+These matrices are used to compute what the bacteria will do given it's sensor outputs.
+---
+## World
+The world consists of a square matrix on which some entries are occupied by a bacteria.
+This file consists of functions that spawns bacteria, let them perform actions and then run the Natural Selection function to select the survivors.
+There are two functions, Save and Load, that manage the data stored on `log/gen.json`.
+---
+## Main
+The main file simply runs a complete simulation and stops after a certain number of iteration, as specified in the `MAX_GEN` variable.
+If you don't want to reset the evolution and keep evolving from `log/gen.json` you can comment some lines as specified in the file.
+---
+## Visual
+Simply shows on screen the current `log/gen.json` population, it doesn't modify the file in any way, is only a visualization tool.
+---
+## To do
+Separate the graph visualization from the bacteria file and organize the code in folders.
