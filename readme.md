@@ -18,6 +18,15 @@ The project consists of multiple files:
 - ***main.py***: the main file that runs a certain number of simulations and stores the survivors informations on `log/gen.json`.
 - ***visual.py***: runs a simulation based on the `log/gen.json` file and shows it on screen.
 
+In order to run the program customize the settings to your likings and execute
+```bash
+python3.11 main.py
+```
+If you want to visualize the current generetion run
+```bash
+python3.11 visual.py
+```
+
 ## Settings
 - ***SIZE***: the size of the world square matrix
 - ***POPULATION***: the starting bacteria population.
